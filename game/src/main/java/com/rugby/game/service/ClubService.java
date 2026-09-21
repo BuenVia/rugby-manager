@@ -19,11 +19,11 @@ public class ClubService {
 
     private void createTestData() {
 
-        Club barcelona = new Club(1L, "Barcelona Rugby");
+        Club barcelona = new Club(1L, "England Rugby");
 
         Player player = new Player(
                 1L,
-                "James Smith",
+                "Fin Smith",
                 Position.FLY_HALF
         );
 
