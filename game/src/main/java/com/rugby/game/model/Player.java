@@ -1,10 +1,18 @@
 package com.rugby.game.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Player {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Position position;
+    @ManyToOne
+    @JoinColumn(name = "club_id")
+    private Club club;
 
     private int speed;
     private int strength;
@@ -16,6 +24,14 @@ public class Player {
         this.id = id;
         this.name = name;
         this.position = position;
+    }
+
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
     }
 
     public Long getId() {

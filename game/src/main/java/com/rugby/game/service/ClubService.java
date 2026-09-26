@@ -3,6 +3,8 @@ package com.rugby.game.service;
 import com.rugby.game.model.Club;
 import com.rugby.game.model.Player;
 import com.rugby.game.model.Position;
+import com.rugby.game.repository.ClubRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,6 +14,9 @@ import java.util.List;
 public class ClubService {
 
     private final List<Club>clubs = new ArrayList<>();
+
+    @Autowired
+    private ClubRepository clubRepository;
 
     public ClubService() {
         createTestData();
@@ -43,9 +48,11 @@ public class ClubService {
     }
 
     public Club getClub(Long id) {
-        return clubs.stream()
-                .filter(club -> club.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+        return clubRepository.findById(id).orElseThrow(() -> new RuntimeException("Club not found " + id));
+//        return clubRepository.findById(id).orElse(null);
+        //        return clubs.stream()
+//                .filter(club -> club.getId().equals(id))
+//                .findFirst()
+//                .orElse(null);
     }
 }

@@ -1,13 +1,21 @@
 package com.rugby.game.model;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Club {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @OneToMany(mappedBy = "club")
     private List<Player> squad = new ArrayList<>();
+
+    public Club() {}
 
     public Club(Long id, String name) {
         this.id = id;
